@@ -1,0 +1,1902 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Solar Energy Intelligence</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script
+    src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js">
+  </script>
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+
+  <!-- ===================================================== -->
+  <!-- HEADER -->
+  <!-- ===================================================== -->
+
+  <header class="app-header">
+
+    <div class="app-brand">
+
+      <p class="app-subtitle">
+        SMART ENERGY MANAGEMENT & FORECASTING
+      </p>
+
+      <h1>
+        Solar Energy Intelligence
+      </h1>
+
+    </div>
+
+
+    <div class="header-actions">
+
+      <div class="system-status">
+
+        <span class="status-dot"></span>
+
+        System Online
+
+      </div>
+
+
+      <button
+        class="profile-button"
+        id="profileButton"
+        type="button"
+      >
+
+        <div
+          class="profile-button-avatar"
+          id="profileButtonAvatar"
+        >
+          👤
+        </div>
+
+        <div class="profile-button-info">
+
+          <strong id="profileButtonTitle">
+            Profile
+          </strong>
+
+          <span id="profileButtonSubtitle">
+            Sign in
+          </span>
+
+        </div>
+
+      </button>
+
+    </div>
+
+  </header>
+
+
+
+  <main>
+
+
+    <!-- ===================================================== -->
+    <!-- HOME -->
+    <!-- ===================================================== -->
+
+    <section
+      class="page active"
+      id="home"
+    >
+
+      <div class="section-header">
+
+        <div>
+
+          <p class="section-kicker">
+            Overview
+          </p>
+
+          <h2>
+            Energy Summary
+          </h2>
+
+        </div>
+
+        <span class="update-text">
+          Live demo data
+        </span>
+
+      </div>
+
+
+
+      <!-- EMS STATE -->
+
+      <article class="ems-card">
+
+        <div>
+
+          <p class="card-label">
+            EMS STATE
+          </p>
+
+          <h3 id="homeStateName">
+            NORMAL
+          </h3>
+
+          <p id="homeStateDescription">
+            Automatic energy management active
+          </p>
+
+        </div>
+
+
+        <div class="state-circle">
+
+          <span id="homeStateNumber">
+            1
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- MAIN METRICS -->
+
+      <div class="metric-grid">
+
+        <article class="metric-card">
+
+          <div class="metric-icon">
+            🔋
+          </div>
+
+          <div>
+
+            <p class="card-label">
+              BATTERY SOC
+            </p>
+
+            <h3 id="homeSoc">
+              62%
+            </h3>
+
+            <p>
+              Battery level
+            </p>
+
+          </div>
+
+          <div class="progress-bar">
+
+            <div
+              class="progress-fill"
+              id="socProgress"
+              style="width:62%;">
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <article class="metric-card">
+
+          <div class="metric-icon">
+            ☀️
+          </div>
+
+          <div>
+
+            <p class="card-label">
+              PV POWER
+            </p>
+
+            <h3 id="homePv">
+              4.62 W
+            </h3>
+
+            <p>
+              Solar generation
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <article class="metric-card">
+
+          <div class="metric-icon">
+            🏠
+          </div>
+
+          <div>
+
+            <p class="card-label">
+              LOAD POWER
+            </p>
+
+            <h3 id="homeLoad">
+              4.20 W
+            </h3>
+
+            <p>
+              Current consumption
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <article class="metric-card">
+
+          <div class="metric-icon">
+            ⚡
+          </div>
+
+          <div>
+
+            <p class="card-label">
+              NET POWER
+            </p>
+
+            <h3
+              class="positive-text"
+              id="homeNet"
+            >
+              +0.42 W
+            </h3>
+
+            <p id="homeNetDescription">
+              Energy surplus
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <article class="metric-card">
+
+          <div class="metric-icon">
+            🌡️
+          </div>
+
+          <div>
+
+            <p class="card-label">
+              TEMPERATURE
+            </p>
+
+            <h3 id="homeTemp">
+              31.8 °C
+            </h3>
+
+            <p>
+              Ambient temperature
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <article class="metric-card">
+
+          <div class="metric-icon">
+            💡
+          </div>
+
+          <div>
+
+            <p class="card-label">
+              LIGHT LEVEL
+            </p>
+
+            <h3 id="homeLdr">
+              70%
+            </h3>
+
+            <p>
+              LDR measurement
+            </p>
+
+          </div>
+
+        </article>
+
+      </div>
+
+
+
+      <!-- BATTERY FLOW / SAFETY -->
+
+      <div class="home-bottom-grid">
+
+        <article class="info-card">
+
+          <p class="card-label">
+            BATTERY FLOW
+          </p>
+
+          <h3>
+            Charge / Discharge
+          </h3>
+
+
+          <div class="command-row">
+
+            <div>
+
+              <span>
+                Charge Command
+              </span>
+
+              <strong id="chargeCommand">
+                1
+              </strong>
+
+            </div>
+
+
+            <div>
+
+              <span>
+                Discharge Command
+              </span>
+
+              <strong id="dischargeCommand">
+                0
+              </strong>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <article class="info-card">
+
+          <p class="card-label">
+            SAFETY
+          </p>
+
+          <h3 id="safetyStatus">
+            System Safe
+          </h3>
+
+          <p
+            class="muted-text"
+            id="safetyDescription"
+          >
+            No active temperature fault detected.
+          </p>
+
+        </article>
+
+      </div>
+
+
+
+      <!-- PV HEALTH -->
+
+      <article
+        class="pv-health-card"
+        id="pvHealthCard"
+      >
+
+        <div class="pv-health-main">
+
+          <p class="card-label">
+            PV PERFORMANCE CHECK
+          </p>
+
+          <h3 id="pvHealthTitle">
+            Panel Performance Normal
+          </h3>
+
+          <p
+            class="muted-text"
+            id="pvHealthDescription"
+          >
+            PV generation is consistent with the measured light level.
+          </p>
+
+        </div>
+
+
+        <div class="pv-health-values">
+
+          <div>
+
+            <span>
+              LDR
+            </span>
+
+            <strong id="pvHealthLdr">
+              70%
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Expected PV
+            </span>
+
+            <strong id="expectedPv">
+              4.80 W
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Actual PV
+            </span>
+
+            <strong id="actualPv">
+              4.62 W
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Difference
+            </span>
+
+            <strong id="pvDifference">
+              -3.8%
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="pv-health-status"
+          id="pvHealthStatus"
+        >
+          NORMAL
+        </div>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- ===================================================== -->
+    <!-- ENERGY -->
+    <!-- ===================================================== -->
+
+    <section
+      class="page"
+      id="energy"
+    >
+
+      <div class="section-header">
+
+        <div>
+
+          <p class="section-kicker">
+            Energy
+          </p>
+
+          <h2>
+            Power & Battery Analytics
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <div class="metric-grid compact-grid">
+
+        <article class="metric-card">
+
+          <p class="card-label">
+            PV POWER
+          </p>
+
+          <h3 id="energyPv">
+            4.62 W
+          </h3>
+
+          <p>
+            Current generation
+          </p>
+
+        </article>
+
+
+        <article class="metric-card">
+
+          <p class="card-label">
+            LOAD
+          </p>
+
+          <h3 id="energyLoad">
+            4.20 W
+          </h3>
+
+          <p>
+            Current load
+          </p>
+
+        </article>
+
+
+        <article class="metric-card">
+
+          <p class="card-label">
+            NET
+          </p>
+
+          <h3
+            class="positive-text"
+            id="energyNet"
+          >
+            +0.42 W
+          </h3>
+
+          <p>
+            Power balance
+          </p>
+
+        </article>
+
+
+        <article class="metric-card">
+
+          <p class="card-label">
+            SOC
+          </p>
+
+          <h3 id="energySoc">
+            62%
+          </h3>
+
+          <p>
+            Battery state
+          </p>
+
+        </article>
+
+      </div>
+
+
+
+      <article class="chart-card">
+
+        <div class="card-heading">
+
+          <div>
+
+            <p class="card-label">
+              REAL-TIME POWER
+            </p>
+
+            <h3>
+              PV / Load / Net Power
+            </h3>
+
+          </div>
+
+        </div>
+
+        <div class="chart-wrapper">
+
+          <canvas id="powerChart"></canvas>
+
+        </div>
+
+      </article>
+
+
+
+      <article class="chart-card">
+
+        <div class="card-heading">
+
+          <div>
+
+            <p class="card-label">
+              BATTERY
+            </p>
+
+            <h3>
+              Battery SOC Trend
+            </h3>
+
+          </div>
+
+        </div>
+
+        <div class="chart-wrapper">
+
+          <canvas id="socChart"></canvas>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- ===================================================== -->
+    <!-- WEATHER -->
+    <!-- ===================================================== -->
+
+    <section
+      class="page"
+      id="weather"
+    >
+
+      <div class="section-header">
+
+        <div>
+
+          <p class="section-kicker">
+            Weather Intelligence
+          </p>
+
+          <h2>
+            Solar Forecast
+          </h2>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="weather-tabs">
+
+        <button
+          class="weather-tab active"
+          data-weather-tab="today"
+        >
+          Today
+        </button>
+
+
+        <button
+          class="weather-tab"
+          data-weather-tab="week"
+        >
+          7 Days
+        </button>
+
+      </div>
+
+
+
+      <!-- TODAY -->
+
+      <div
+        class="weather-panel active"
+        id="weatherToday"
+      >
+
+        <article class="current-weather-card">
+
+          <div class="weather-main-info">
+
+            <div>
+
+              <p class="card-label">
+                CURRENT WEATHER
+              </p>
+
+              <h3 id="currentWeatherText">
+                Clear Sky
+              </h3>
+
+              <p
+                class="weather-big-temperature"
+                id="currentWeatherTemp"
+              >
+                30°C
+              </p>
+
+              <p class="muted-text">
+                Suitable conditions for solar generation
+              </p>
+
+            </div>
+
+
+            <div class="weather-animation-box">
+
+              <lottie-player
+                id="weatherLottie"
+                src="https://assets10.lottiefiles.com/packages/lf20_xlky4kvh.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+              >
+              </lottie-player>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="weather-mini-grid">
+
+            <div>
+
+              <span>
+                Cloud Cover
+              </span>
+
+              <strong id="currentCloudCover">
+                12%
+              </strong>
+
+            </div>
+
+
+            <div>
+
+              <span>
+                Humidity
+              </span>
+
+              <strong id="currentHumidity">
+                45%
+              </strong>
+
+            </div>
+
+
+            <div>
+
+              <span>
+                Solar Radiation
+              </span>
+
+              <strong id="currentSolarRadiation">
+                780 W/m²
+              </strong>
+
+            </div>
+
+
+            <div>
+
+              <span>
+                Forecast Energy
+              </span>
+
+              <strong id="currentForecastEnergy">
+                0.086 kWh
+              </strong>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+
+        <article class="chart-card">
+
+          <div class="card-heading">
+
+            <div>
+
+              <p class="card-label">
+                HOURLY
+              </p>
+
+              <h3>
+                Temperature Forecast
+              </h3>
+
+            </div>
+
+          </div>
+
+
+          <div class="chart-wrapper">
+
+            <canvas id="temperatureForecastChart"></canvas>
+
+          </div>
+
+        </article>
+
+
+
+        <article class="chart-card">
+
+          <div class="card-heading">
+
+            <div>
+
+              <p class="card-label">
+                SOLAR
+              </p>
+
+              <h3>
+                Solar Radiation & Estimated Production
+              </h3>
+
+            </div>
+
+          </div>
+
+          <div class="chart-wrapper">
+
+            <canvas id="solarForecastChart"></canvas>
+
+          </div>
+
+        </article>
+
+
+        <div
+          class="hourly-list"
+          id="hourlyWeatherList"
+        >
+        </div>
+
+      </div>
+
+
+
+      <!-- WEEK -->
+
+      <div
+        class="weather-panel"
+        id="weatherWeek"
+      >
+
+        <div
+          class="forecast-grid"
+          id="weeklyForecastCards"
+        >
+        </div>
+
+
+        <article class="chart-card">
+
+          <div class="card-heading">
+
+            <div>
+
+              <p class="card-label">
+                7 DAY FORECAST
+              </p>
+
+              <h3>
+                Estimated Daily Solar Energy
+              </h3>
+
+            </div>
+
+          </div>
+
+          <div class="chart-wrapper">
+
+            <canvas id="weeklyEnergyForecastChart"></canvas>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================== -->
+    <!-- HISTORY -->
+    <!-- ===================================================== -->
+
+    <section
+      class="page"
+      id="history"
+    >
+
+      <div class="section-header">
+
+        <div>
+
+          <p class="section-kicker">
+            History
+          </p>
+
+          <h2>
+            Forecast Accuracy
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <article class="summary-card">
+
+        <div>
+
+          <p class="card-label">
+            WEEKLY FORECAST PERFORMANCE
+          </p>
+
+          <h3>
+            Predicted vs Actual Production
+          </h3>
+
+        </div>
+
+        <div
+          class="accuracy-pill"
+          id="accuracyPill"
+        >
+          94.2% Accuracy
+        </div>
+
+      </article>
+
+
+
+      <article class="chart-card">
+
+        <div class="card-heading">
+
+          <div>
+
+            <p class="card-label">
+              LAST 7 DAYS
+            </p>
+
+            <h3>
+              Energy Forecast Comparison
+            </h3>
+
+          </div>
+
+        </div>
+
+        <div class="chart-wrapper">
+
+          <canvas id="historyChart"></canvas>
+
+        </div>
+
+      </article>
+
+
+
+      <div class="history-table-card">
+
+        <div class="table-header">
+
+          <span>Day</span>
+          <span>Forecast</span>
+          <span>Actual</span>
+          <span>Error</span>
+
+        </div>
+
+        <div id="historyTable"></div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================== -->
+    <!-- CONTROL -->
+    <!-- ===================================================== -->
+
+    <section
+      class="page"
+      id="control"
+    >
+
+      <div class="section-header">
+
+        <div>
+
+          <p class="section-kicker">
+            Remote Control
+          </p>
+
+          <h2>
+            EMS Control Center
+          </h2>
+
+        </div>
+
+      </div>
+
+
+
+      <article class="control-state-card">
+
+        <div>
+
+          <p class="card-label">
+            CURRENT EMS STATE
+          </p>
+
+          <h3 id="controlStateName">
+            NORMAL
+          </h3>
+
+          <p
+            class="muted-text"
+            id="controlStateDescription"
+          >
+            Automatic control active.
+          </p>
+
+        </div>
+
+        <div class="state-circle small">
+
+          <span id="controlStateNumber">
+            1
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <div class="control-grid">
+
+        <article class="control-card">
+
+          <div>
+
+            <p class="card-label">
+              OPERATING MODE
+            </p>
+
+            <h3>
+              Auto / Manual
+            </h3>
+
+            <p>
+              Switch between automatic EMS control and remote manual control.
+            </p>
+
+          </div>
+
+
+          <button
+            class="mode-switch"
+            id="modeSwitch"
+          >
+
+            <span id="modeSwitchText">
+              AUTO
+            </span>
+
+          </button>
+
+        </article>
+
+
+
+        <article class="control-card">
+
+          <div>
+
+            <p class="card-label">
+              FAN CONTROL
+            </p>
+
+            <h3>
+              Cooling Fan
+            </h3>
+
+            <p>
+              Available when Manual Mode is active.
+            </p>
+
+          </div>
+
+
+          <button
+            class="device-button"
+            id="fanButton"
+            disabled
+          >
+            FAN OFF
+          </button>
+
+        </article>
+
+
+
+        <article class="control-card">
+
+          <div>
+
+            <p class="card-label">
+              LED CONTROL
+            </p>
+
+            <h3>
+              Lighting
+            </h3>
+
+            <p>
+              Available when Manual Mode is active.
+            </p>
+
+          </div>
+
+
+          <button
+            class="device-button"
+            id="ledButton"
+            disabled
+          >
+            LED OFF
+          </button>
+
+        </article>
+
+
+
+        <article class="control-card">
+
+          <div>
+
+            <p class="card-label">
+              RELAY
+            </p>
+
+            <h3>
+              Load Relay
+            </h3>
+
+            <p>
+              Current relay output state.
+            </p>
+
+          </div>
+
+
+          <div
+            class="relay-status"
+            id="relayStatus"
+          >
+            ON
+          </div>
+
+        </article>
+
+      </div>
+
+
+
+      <article class="safety-note">
+
+        <span class="safety-icon">
+          🛡️
+        </span>
+
+        <div>
+
+          <strong>
+            Safety override enabled
+          </strong>
+
+          <p>
+            If a temperature fault becomes active,
+            manual commands are ignored and the EMS
+            switches to SAFETY State 5.
+          </p>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- ===================================================== -->
+    <!-- PROFILE -->
+    <!-- ===================================================== -->
+
+    <section
+      class="page"
+      id="profile"
+    >
+
+
+      <!-- NOT SIGNED IN -->
+
+      <div
+        class="profile-auth-container"
+        id="profileAuthContainer"
+      >
+
+        <div class="profile-page-heading">
+
+          <p class="section-kicker">
+            Personal Solar EMS
+          </p>
+
+          <h2>
+            Your Profile
+          </h2>
+
+          <p>
+            Sign in to access your personal EMS,
+            forecasts, settings and remote controls.
+          </p>
+
+        </div>
+
+
+
+        <div class="auth-card">
+
+
+          <div class="auth-tabs">
+
+            <button
+              class="auth-tab active"
+              data-auth-tab="login"
+            >
+              Sign In
+            </button>
+
+
+            <button
+              class="auth-tab"
+              data-auth-tab="register"
+            >
+              Register
+            </button>
+
+          </div>
+
+
+
+          <!-- LOGIN -->
+
+          <div
+            class="auth-panel active"
+            id="loginPanel"
+          >
+
+            <div class="auth-form-heading">
+
+              <h3>
+                Sign in
+              </h3>
+
+              <p>
+                Access your Solar EMS profile.
+              </p>
+
+            </div>
+
+
+            <form
+              class="account-form"
+              id="loginForm"
+            >
+
+              <label>
+                Email or Username
+              </label>
+
+              <input
+                type="text"
+                id="loginIdentifier"
+                placeholder="name@example.com"
+                required
+              >
+
+
+              <label>
+                Password
+              </label>
+
+              <div class="password-input-wrapper">
+
+                <input
+                  type="password"
+                  id="loginPassword"
+                  placeholder="Enter your password"
+                  required
+                >
+
+                <button
+                  class="password-toggle"
+                  type="button"
+                  data-target="loginPassword"
+                >
+                  👁
+                </button>
+
+              </div>
+
+
+              <div class="login-options">
+
+                <label class="remember-option">
+
+                  <input
+                    type="checkbox"
+                    id="rememberMe"
+                  >
+
+                  Remember me
+
+                </label>
+
+
+                <button
+                  type="button"
+                  class="text-button"
+                  id="forgotPasswordButton"
+                >
+                  Forgot password?
+                </button>
+
+              </div>
+
+
+              <button
+                class="primary-auth-button"
+                type="submit"
+              >
+                Sign In
+              </button>
+
+            </form>
+
+
+            <p class="auth-demo-note">
+              Demo authentication is stored only in this browser.
+            </p>
+
+          </div>
+
+
+
+          <!-- REGISTER -->
+
+          <div
+            class="auth-panel"
+            id="registerPanel"
+          >
+
+            <div class="auth-form-heading">
+
+              <h3>
+                Create Profile
+              </h3>
+
+              <p>
+                Create your personal Solar EMS profile.
+              </p>
+
+            </div>
+
+
+            <form
+              class="account-form"
+              id="registerForm"
+            >
+
+              <label>
+                Full Name
+              </label>
+
+              <input
+                type="text"
+                id="registerFullName"
+                placeholder="Your name"
+                required
+              >
+
+
+              <label>
+                Username
+              </label>
+
+              <input
+                type="text"
+                id="registerUsername"
+                placeholder="solaruser"
+                required
+              >
+
+
+              <label>
+                Email
+              </label>
+
+              <input
+                type="email"
+                id="registerEmail"
+                placeholder="name@example.com"
+                required
+              >
+
+
+              <label>
+                Password
+              </label>
+
+              <div class="password-input-wrapper">
+
+                <input
+                  type="password"
+                  id="registerPassword"
+                  placeholder="Create password"
+                  required
+                >
+
+                <button
+                  class="password-toggle"
+                  type="button"
+                  data-target="registerPassword"
+                >
+                  👁
+                </button>
+
+              </div>
+
+
+              <label>
+                Confirm Password
+              </label>
+
+              <div class="password-input-wrapper">
+
+                <input
+                  type="password"
+                  id="registerPasswordConfirm"
+                  placeholder="Repeat password"
+                  required
+                >
+
+                <button
+                  class="password-toggle"
+                  type="button"
+                  data-target="registerPasswordConfirm"
+                >
+                  👁
+                </button>
+
+              </div>
+
+
+              <button
+                class="primary-auth-button"
+                type="submit"
+              >
+                Create Profile
+              </button>
+
+            </form>
+
+          </div>
+
+
+
+          <!-- FORGOT PASSWORD -->
+
+          <div
+            class="auth-panel"
+            id="forgotPanel"
+          >
+
+            <div class="auth-form-heading">
+
+              <h3>
+                Reset Password
+              </h3>
+
+              <p>
+                Enter your registered email address.
+              </p>
+
+            </div>
+
+
+            <form
+              class="account-form"
+              id="forgotPasswordForm"
+            >
+
+              <label>
+                Email
+              </label>
+
+              <input
+                type="email"
+                id="forgotEmail"
+                placeholder="name@example.com"
+                required
+              >
+
+
+              <button
+                class="primary-auth-button"
+                type="submit"
+              >
+                Send Reset Request
+              </button>
+
+
+              <button
+                class="secondary-auth-button"
+                id="backToLoginButton"
+                type="button"
+              >
+                Back to Sign In
+              </button>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- SIGNED IN PROFILE -->
+
+      <div
+        class="profile-content hidden"
+        id="profileContent"
+      >
+
+        <article class="profile-header-card">
+
+
+          <div class="profile-image-wrapper">
+
+            <div class="profile-image-large">
+
+              <img
+                id="profileImage"
+                alt="Profile"
+                class="hidden"
+              >
+
+              <span id="profileInitials">
+                SE
+              </span>
+
+            </div>
+
+
+            <label
+              class="photo-upload-button"
+              for="profilePhotoInput"
+            >
+              Change Photo
+            </label>
+
+
+            <input
+              type="file"
+              id="profilePhotoInput"
+              accept="image/*"
+              hidden
+            >
+
+          </div>
+
+
+
+          <div class="profile-main-info">
+
+            <p class="card-label">
+              PROFILE
+            </p>
+
+            <h2 id="profileFullName">
+              Solar EMS User
+            </h2>
+
+            <p id="profileEmail">
+              user@example.com
+            </p>
+
+          </div>
+
+
+          <button
+            class="logout-button"
+            id="logoutButton"
+          >
+            Sign Out
+          </button>
+
+        </article>
+
+
+
+        <div class="profile-grid">
+
+          <article class="profile-card">
+
+            <p class="card-label">
+              USERNAME
+            </p>
+
+            <h3 id="profileUsername">
+              solaruser
+            </h3>
+
+          </article>
+
+
+          <article class="profile-card">
+
+            <p class="card-label">
+              SYSTEM NAME
+            </p>
+
+            <h3 id="profileSystemName">
+              Home Solar EMS
+            </h3>
+
+          </article>
+
+
+          <article class="profile-card">
+
+            <p class="card-label">
+              PANEL CAPACITY
+            </p>
+
+            <h3 id="profilePanelCapacity">
+              13.7 W
+            </h3>
+
+          </article>
+
+
+          <article class="profile-card">
+
+            <p class="card-label">
+              CONNECTION
+            </p>
+
+            <h3 class="positive-text">
+              Online
+            </h3>
+
+          </article>
+
+        </div>
+
+
+
+        <article class="profile-settings-card">
+
+          <div class="card-heading">
+
+            <div>
+
+              <p class="card-label">
+                SYSTEM SETTINGS
+              </p>
+
+              <h3>
+                Personal Energy System
+              </h3>
+
+            </div>
+
+          </div>
+
+
+          <form
+            class="profile-settings-form"
+            id="profileSettingsForm"
+          >
+
+            <div>
+
+              <label>
+                System Name
+              </label>
+
+              <input
+                type="text"
+                id="systemNameInput"
+                value="Home Solar EMS"
+              >
+
+            </div>
+
+
+            <div>
+
+              <label>
+                Panel Capacity (W)
+              </label>
+
+              <input
+                type="number"
+                id="panelCapacityInput"
+                value="13.7"
+                step="0.1"
+                min="0.1"
+              >
+
+            </div>
+
+
+            <div>
+
+              <label>
+                Location
+              </label>
+
+              <input
+                type="text"
+                id="systemLocationInput"
+                placeholder="City"
+              >
+
+            </div>
+
+
+            <button
+              class="save-profile-button"
+              type="submit"
+            >
+              Save Settings
+            </button>
+
+          </form>
+
+        </article>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- ===================================================== -->
+  <!-- BOTTOM NAV -->
+  <!-- ===================================================== -->
+
+  <nav class="bottom-navigation">
+
+    <button
+      class="nav-button active"
+      data-page="home"
+    >
+      <span class="nav-icon">⌂</span>
+      <span>Home</span>
+    </button>
+
+
+    <button
+      class="nav-button"
+      data-page="energy"
+    >
+      <span class="nav-icon">⚡</span>
+      <span>Energy</span>
+    </button>
+
+
+    <button
+      class="nav-button"
+      data-page="weather"
+    >
+      <span class="nav-icon">☀️</span>
+      <span>Weather</span>
+    </button>
+
+
+    <button
+      class="nav-button"
+      data-page="history"
+    >
+      <span class="nav-icon">📊</span>
+      <span>History</span>
+    </button>
+
+
+    <button
+      class="nav-button"
+      data-page="control"
+    >
+      <span class="nav-icon">⚙️</span>
+      <span>Control</span>
+    </button>
+
+  </nav>
+
+</div>
+
+
+
+<!-- NOTIFICATION -->
+
+<div
+  class="app-notification"
+  id="appNotification"
+>
+
+  <span id="notificationText">
+    Notification
+  </span>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
