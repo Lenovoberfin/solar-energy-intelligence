@@ -1,6 +1,6 @@
 // Solar Energy Intelligence - PWA Service Worker
 
-const CACHE_NAME = "solar-energy-intelligence-v1";
+const CACHE_NAME = "solar-energy-intelligence-v5";
 
 const LOCAL_ASSETS = [
   "./",

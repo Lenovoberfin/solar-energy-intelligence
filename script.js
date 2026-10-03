@@ -50,7 +50,26 @@ function openPage(pageId) {
 
 navButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    openPage(button.dataset.page);
+    const targetPage =
+      button.dataset.page;
+
+
+    if (
+      !signedIn() ||
+      !getUser()
+    ) {
+      openPage("profile");
+
+      showNotification(
+        "Please sign in to access the dashboard.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    openPage(targetPage);
   });
 });
 
@@ -1186,6 +1205,9 @@ const USER_KEY =
 const SESSION_KEY =
   "solarEMSSession";
 
+const REMEMBER_KEY =
+  "solarEMSRememberMe";
+
 
 function getUser() {
   const raw =
@@ -1221,7 +1243,60 @@ function signedIn() {
   return (
     localStorage.getItem(
       SESSION_KEY
+    ) === "true" ||
+    sessionStorage.getItem(
+      SESSION_KEY
     ) === "true"
+  );
+}
+
+
+function setLoginSession(rememberMe) {
+  localStorage.removeItem(
+    SESSION_KEY
+  );
+
+  sessionStorage.removeItem(
+    SESSION_KEY
+  );
+
+
+  if (rememberMe) {
+    localStorage.setItem(
+      SESSION_KEY,
+      "true"
+    );
+
+    localStorage.setItem(
+      REMEMBER_KEY,
+      "true"
+    );
+  }
+
+  else {
+    sessionStorage.setItem(
+      SESSION_KEY,
+      "true"
+    );
+
+    localStorage.removeItem(
+      REMEMBER_KEY
+    );
+  }
+}
+
+
+function clearLoginSession() {
+  localStorage.removeItem(
+    SESSION_KEY
+  );
+
+  sessionStorage.removeItem(
+    SESSION_KEY
+  );
+
+  localStorage.removeItem(
+    REMEMBER_KEY
   );
 }
 
@@ -2046,7 +2121,7 @@ function renderWeeklyWeather(
 
       const dayName =
         date.toLocaleDateString(
-          [],
+          "en-US",
           {
             weekday:
               "short"
@@ -3137,9 +3212,16 @@ document
       }
 
 
-      localStorage.setItem(
-        SESSION_KEY,
-        "true"
+      const rememberMe =
+        document
+          .getElementById(
+            "rememberMe"
+          )
+          ?.checked === true;
+
+
+      setLoginSession(
+        rememberMe
       );
 
 
@@ -3147,6 +3229,9 @@ document
 
 
       updateProfileUI();
+
+
+      openPage("home");
 
 
       showNotification(
@@ -3222,12 +3307,13 @@ document
   ?.addEventListener(
     "click",
     () => {
-      localStorage.removeItem(
-        SESSION_KEY
-      );
+      clearLoginSession();
 
 
       updateProfileUI();
+
+
+      openPage("profile");
 
 
       showNotification(
@@ -3692,7 +3778,21 @@ function initializeApp() {
 
   updateProfileUI();
 
-  loadRealWeather();
+
+  if (
+    signedIn() &&
+    getUser()
+  ) {
+    openPage("home");
+
+    loadRealWeather();
+  }
+
+  else {
+    clearLoginSession();
+
+    openPage("profile");
+  }
 }
 
 
@@ -3710,12 +3810,56 @@ const WEATHER_REFRESH_INTERVAL =
 
 setInterval(
   () => {
-    loadRealWeather(
-      true
-    );
+    if (
+      signedIn() &&
+      getUser()
+    ) {
+      loadRealWeather(
+        true
+      );
+    }
   },
 
   WEATHER_REFRESH_INTERVAL
+);
+
+
+
+
+// ============================================================
+// PWA SPLASH SCREEN
+// ============================================================
+
+function hideAppSplash() {
+  const splash =
+    document.getElementById(
+      "appSplash"
+    );
+
+  if (!splash) {
+    return;
+  }
+
+  window.setTimeout(
+    () => {
+      splash.classList.add(
+        "is-hidden"
+      );
+
+      window.setTimeout(
+        () => {
+          splash.remove();
+        },
+        500
+      );
+    },
+    1850
+  );
+}
+
+window.addEventListener(
+  "load",
+  hideAppSplash
 );
 
 
