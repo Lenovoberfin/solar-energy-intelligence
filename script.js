@@ -90,6 +90,66 @@ if (profileButton) {
 }
 
 
+function updateAuthChromeVisibility() {
+  const loggedIn =
+    signedIn() &&
+    Boolean(getUser());
+
+  const body =
+    document.body;
+
+  const bottomNavigation =
+    document.querySelector(
+      ".bottom-navigation"
+    );
+
+  if (loggedIn) {
+    body.classList.remove(
+      "auth-pending",
+      "auth-locked"
+    );
+
+    if (profileButton) {
+      profileButton.style.removeProperty(
+        "display"
+      );
+    }
+
+    if (bottomNavigation) {
+      bottomNavigation.style.removeProperty(
+        "display"
+      );
+    }
+  }
+
+  else {
+    body.classList.remove(
+      "auth-pending"
+    );
+
+    body.classList.add(
+      "auth-locked"
+    );
+
+    if (profileButton) {
+      profileButton.style.setProperty(
+        "display",
+        "none",
+        "important"
+      );
+    }
+
+    if (bottomNavigation) {
+      bottomNavigation.style.setProperty(
+        "display",
+        "none",
+        "important"
+      );
+    }
+  }
+}
+
+
 // ============================================================
 // NOTIFICATION
 // ============================================================
@@ -3227,6 +3287,7 @@ document
 
       event.target.reset();
 
+      updateAuthChromeVisibility();
 
       updateProfileUI();
 
@@ -3309,6 +3370,7 @@ document
     () => {
       clearLoginSession();
 
+      updateAuthChromeVisibility();
 
       updateProfileUI();
 
@@ -3550,6 +3612,8 @@ function getInitials(name) {
 
 
 function updateProfileUI() {
+  updateAuthChromeVisibility();
+
   const user =
     getUser();
 
@@ -3772,6 +3836,8 @@ function updateProfileUI() {
 // ============================================================
 
 function initializeApp() {
+  updateAuthChromeVisibility();
+
   updateChargeDischarge();
 
   updateDashboard();
