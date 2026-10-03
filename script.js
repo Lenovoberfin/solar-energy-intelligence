@@ -3853,7 +3853,7 @@ function hideAppSplash() {
         500
       );
     },
-    1850
+    4000
   );
 }
 
